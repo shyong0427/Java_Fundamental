@@ -10,7 +10,7 @@ package java_20190716;
 
 public class CalenderDemo {
 	public static void main(String[] args) {
-		int year = 2020, month = 3, days = 15;
+		int year = 2019, month = 12, days = 25;
 		//preYear = 2018년, preMonth = 2019년 11월
 		int preYear = year - 1, preMonth = month - 1;
 		int totalCount = 0;

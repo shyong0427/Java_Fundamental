@@ -8,8 +8,7 @@ public class LotteryDemo_2 {
 //// temp는 1보다 크거나 같거나 45보다 작거나 같은 임의의 값을 매번 새로 생성
 			int temp = (int) (Math.random() * 45) + 1;
 //// i = 0 무조건 임의의 temp 값 입력, 비교 불필요
-			if (i == 0)
-				lotto[i] = temp;
+			if (i == 0) lotto[i] = temp;
 			else {
 //// isExisted는 임의의 값 temp와 이전 배열의 값을 비교.
 //// 동일 시 true, 아닐 시 false를 반환.
@@ -24,10 +23,8 @@ public class LotteryDemo_2 {
 					}
 				}
 //// 존재하지 않을 시 새로운 값 입력, 존재 시 이전 위치로 이동.				
-				if (!isExisted)
-					lotto[i] = temp;
-				else
-					i--;
+				if (!isExisted) lotto[i] = temp;
+				else i--;
 			}
 		}
 //// 오름차순 정리.		
