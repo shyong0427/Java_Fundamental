@@ -12,5 +12,11 @@ public class ArrayCopyDemo {
 		for (String str : temp) {
 			System.out.println(str);
 		}
+		
+		System.out.printf("\ns");
+		
+		for (String str : fruits) {
+			System.out.println(str);
+		}
 	}
 }
