@@ -17,7 +17,7 @@ public class MemberPay {
 		this.status = status;
 	}
 	
-	public String getStatue() {
+	public String getStatus() {
 		return status;
 	}
 	
