@@ -38,8 +38,14 @@ public class Calender {
 		if (isLeafYear) {
 			monthArray[1] = 29;
 		}
-		
-		return monthArray[month-1];
+
+		return monthArray[month - 1];
+	}
+
+	public void print(int year) {
+		for (int i = 1; i <= 12; i++) {
+			print(year, i);
+		}
 	}
 
 	public void print(int year, int month) {
