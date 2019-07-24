@@ -8,7 +8,7 @@ public class PrimNumberDemo {
 		int[] array = p1.getPrimeNumber(100);
 		
 		for (int temp : array) {
-			System.out.print(temp + "\t");
+			System.out.print(temp + " ");
 		}
 		System.out.println();
 		System.out.printf("총 갯수 : %d", array.length);

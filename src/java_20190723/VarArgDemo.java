@@ -1,7 +1,7 @@
 package java_20190723;
 
 public class VarArgDemo {
-	public long sum(int... temp) {
+	public long sum(int... temp) {  // temp 변수는 배열로 처리한다.
 		long sum = 0;  // 지역변수, 메서드 내에서만 유효하다.
 		
 		for (int t : temp) {
