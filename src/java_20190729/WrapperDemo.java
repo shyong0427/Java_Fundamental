@@ -7,6 +7,7 @@ public class WrapperDemo {
 		ArrayList list = new ArrayList();
 // Java ver1.4 이전에는 primitive data type(pdt)을 Collection에 저장할 수 없었기 때문에 pdt을 객체화 할 수 있는 Wrapper으로 변환하여 저장해야 한다.
 // list.add(1); 와 같이 1을 add 할 수 없다. 
+//		list.add(1);
 		list.add(new Integer(1));
 // 1. primitive data type -> wrapper class(생성자 이용 : new Integer(10))
 		Integer i2 = new Integer(10); // Collection에 담기 위해서, auto-boxing
