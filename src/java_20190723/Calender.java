@@ -5,17 +5,17 @@ package java_20190723;
  */
 public class Calender {
 
-	public static final int SUNDAY = 0;
-	public static final int MONDAY = 1;
-	public static final int TUESDAY = 2;
-	public static final int WEDNESDAY = 3;
-	public static final int THURSDAY = 4;
-	public static final int FRIDAY = 5;
-	public static final int SATURDAY = 6;
+	public static final int SUNDAY = 1;
+	public static final int MONDAY = 2;
+	public static final int TUESDAY = 3;
+	public static final int WEDNESDAY = 4;
+	public static final int THURSDAY = 5;
+	public static final int FRIDAY = 6;
+	public static final int SATURDAY = 7;
 
 	private int getCount(int year, int month, int days) {
 		int preYear = year - 1, preMonth = month - 1;
-		int totalCount = 0;
+		int totalCount = 1;
 		// 2018년까지 총일 수 더하기
 		totalCount = preYear * 365 + (preYear / 4 - preYear / 100 + preYear / 400);
 
