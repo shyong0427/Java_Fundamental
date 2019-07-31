@@ -53,8 +53,19 @@ public class ListDemo {
 			System.out.println(temp);
 		}
 // enhanced for loop 출력가능 (generic으로 선언한 경우만 가능)		
+//		for (Product product : list) {
+//			System.out.println(product);
+//		}
+		
 		for (Product product : list) {
-			System.out.println(product);
+			if (product.number == 3) {
+				product.price = 3500;
+			}
+		}
+		
+		for (int i = 0; i < list.size(); i++) {
+			Product temp = (Product)list.get(i);
+			System.out.println(temp);
 		}
 	}
 }
