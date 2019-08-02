@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.URL;
 
 public class NaverCafeScaningDemo {
@@ -19,19 +20,21 @@ public class NaverCafeScaningDemo {
 		BufferedReader br = null;
 		FileWriter fw = null;
 		BufferedWriter bw = null;
+		PrintWriter pw = null;
 		
 		try {
 			isr = new InputStreamReader(is);
 			br = new BufferedReader(isr);
 			fw = new FileWriter("C:\\dev\\test\\navercafe.html");
 			bw = new BufferedWriter(fw);
+			pw = new PrintWriter(bw, true);
 			
 			String readLine = null;
-
+			
 			while((readLine = br.readLine()) != null) {
-				bw.write(readLine);
-				bw.newLine();
-			}
+//				bw.write(readLine);
+				pw.println(readLine);
+				}
 			bw.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
