@@ -1,11 +1,8 @@
 package java_20190805;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -25,45 +22,40 @@ public class ExcelDemo2 {
 	public static void main(String[] args) {
 		FileReader fr = null;
 		BufferedReader br = null;
-		FileWriter fw = null;
-		BufferedWriter bw = null;
+		String readLine = null;
+		FileOutputStream fos = null;
+		int rowIndex = 0;
+		HSSFRow row = null;
+		HSSFCell cell = null;
 		
 		HSSFWorkbook workbook = new HSSFWorkbook();
-		HSSFSheet sheet = workbook.createSheet("새 파일");
-		HSSFRow row = sheet.createRow(0);
-		HSSFCell cell = row.createCell(0);
-		cell.setCellValue(data[i]);
-		cell = row.createCell(1);
-		
+		HSSFSheet sheet = workbook.createSheet("새 파일");		
 		
 		try {
 			fr = new FileReader("C:\\dev\\test\\test1.txt");
 			br = new BufferedReader(fr);
 			
-			
-			FileOutputStream fos = new FileOutputStream("C:\\dev\\test\\test2.xls");
-			workbook.write(fos);
-			String readLine = null;
-			
-			while ((readLine = br.readLine()) != null) {
+			while((readLine = br.readLine()) != null) {
+				row = sheet.createRow(rowIndex++);
 				String[] data = readLine.split("#");
-				
-				for (int i = 0; i < readLine.length(); i++) {
-					data[i] = br.readLine();
+				for (int i = 0; i < data.length; i++) {
+					cell = row.createCell(i);
+					cell.setCellValue(data[i]);
 				}
 			}
+			
+			fos = new FileOutputStream("C:\\dev\\test\\test2.xls");
+			workbook.write(fos);
 			fos.close();
 			System.out.println("Clear!");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				if (fr != null) fr.close();
 				if (br != null) br.close();
-				if (fw != null) fw.close();
-				if (bw != null) bw.close();
+				if (fos != null) fos.close();
+				if (workbook != null) workbook.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
