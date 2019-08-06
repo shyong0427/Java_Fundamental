@@ -10,9 +10,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.imageio.ImageIO;
 
@@ -261,4 +263,18 @@ public class Utility {
 		return isSuccess;
 	}
 
+	public static String getKoreanDate(String date) { //Aug 05, 2019 -> 2019-08-05
+		String koreanDate = null;
+		SimpleDateFormat from = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+		SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
+		
+		try {
+			Date d = from.parse(date);
+			koreanDate = to.format(d);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return koreanDate;
+	}
 }
