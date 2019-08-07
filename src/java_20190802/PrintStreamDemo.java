@@ -18,7 +18,7 @@ public class PrintStreamDemo {
 		try {
 			ps = System.out;  // monitor connect -> destination is monitor
 			ps.println("Hello world!!!");
-			/*
+			
 			fis = new FileInputStream("C:\\dev\\test\\java_pdf.zip");
 			fos = new FileOutputStream("C:\\dev\\test\\java_pdf_clone.zip");
 			bis = new BufferedInputStream(fis);
@@ -31,7 +31,7 @@ public class PrintStreamDemo {
 //				bos.write(readByte);
 				ps.write(readByte);
 			}
-//			bos.flush(); */
+//			bos.flush(); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

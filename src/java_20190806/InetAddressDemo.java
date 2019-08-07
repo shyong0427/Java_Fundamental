@@ -12,6 +12,5 @@ public class InetAddressDemo {
 		InetAddress i1 = InetAddress.getByName("naver.com");
 		System.out.printf("호스트 이름 : %s \n", i1.getHostName());
 		System.out.printf("호스트 IP : %s \n", i1.getHostAddress());
-		
 	}
 }
