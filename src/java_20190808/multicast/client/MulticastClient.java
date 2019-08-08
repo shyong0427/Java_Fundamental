@@ -23,8 +23,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import java_20190808.multicast.server.MulticastServerThread;
-
 public class MulticastClient implements ActionListener {
 	private String id, ip;
 	private int port;
@@ -115,16 +113,7 @@ public class MulticastClient implements ActionListener {
 			if (message.trim().length() == 0) {
 				JOptionPane.showMessageDialog(jframe, "Do not enter only Enter.", "WARNING", JOptionPane.ERROR_MESSAGE);
 			} else {
-				// 텍스트 에어리어에 추가하기
-				try {
-					bw.write(id + " : " + message + "\n");
-					bw.flush();
-
-					String readLine = br.readLine();
-					jta.append(readLine + "\n");
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				sendMessage(message);
 			}
 			// 텍스트 필드에 입력된 값 제거하기
 			jtf.setText("");
@@ -135,19 +124,23 @@ public class MulticastClient implements ActionListener {
 			if (message.trim().length() == 0) {
 				JOptionPane.showMessageDialog(jframe, "Do not enter only Enter.", "WARNING", JOptionPane.ERROR_MESSAGE);
 			} else {
-				// 텍스트 에어리어에 추가하기
-				try {
-					bw.write(id + " : " + message + "\n");
-					bw.flush();
-//					String readLine = br.readLine();
-//					jta.append(readLine + "\n");
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				sendMessage(message);
 			}
 			// 텍스트 필드에 입력된 값 제거하기
 			jtf.setText("");
 			jtf.requestFocus();
+		}
+	}
+
+	private void sendMessage(String message) {
+		// 텍스트 에어리어에 추가하기
+		try {
+			bw.write(id + " : " + message + "\n");
+			bw.flush();
+//					String readLine = br.readLine();
+//					jta.append(readLine + "\n");
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 	
