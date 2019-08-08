@@ -1,4 +1,4 @@
-package java_20190808.unicast.client;
+package java_20190808.multicast.client;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,7 +23,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class UnicastClient implements ActionListener {
+import java_20190808.multicast.server.MulticastServerThread;
+
+public class MulticastClient implements ActionListener {
 	private String id, ip;
 	private int port;
 	private JFrame jframe;
@@ -33,7 +35,7 @@ public class UnicastClient implements ActionListener {
 	private BufferedReader br;
 	private BufferedWriter bw;
 
-	public UnicastClient(String id, String ip, int port) {
+	public MulticastClient(String id, String ip, int port) {
 		this.id = id;
 		this.ip = ip;
 		this.port = port;
@@ -82,12 +84,12 @@ public class UnicastClient implements ActionListener {
 				try {
 					bw.write("Shutdown \n");
 					bw.flush();
-					String readLine = br.readLine();
+//					String readLine = br.readLine();
 					
-					if (readLine.equals("Shutdown")) {
-						close();
-						System.exit(0);
-					}
+//					if (readLine.equals("Shutdown")) {
+//						close();
+//						System.exit(0);
+//					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -137,8 +139,8 @@ public class UnicastClient implements ActionListener {
 				try {
 					bw.write(id + " : " + message + "\n");
 					bw.flush();
-					String readLine = br.readLine();
-					jta.append(readLine + "\n");
+//					String readLine = br.readLine();
+//					jta.append(readLine + "\n");
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -162,6 +164,9 @@ public class UnicastClient implements ActionListener {
 			Socket socket = new Socket(ip, port);
 			bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			MulticastClientThread mct = new MulticastClientThread(br, jta);
+			Thread t1 = new Thread(mct);
+			t1.start();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -171,6 +176,6 @@ public class UnicastClient implements ActionListener {
 
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		new UnicastClient("65321", "127.0.0.1", 5000).connect();
+		new MulticastClient("030", "192.168.0.52", 6000).connect();
 	}
 }

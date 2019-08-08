@@ -1,4 +1,4 @@
-package java_20190808.unicast.server;
+package java_20190808.multicast.server;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,18 +6,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
-public class UnicastServerThread implements Runnable {
+public class MulticastServerThread implements Runnable {
 	private Socket socket;
+	private ArrayList<MulticastServerThread> list;
+	private BufferedWriter bw;
 	
-	public UnicastServerThread(Socket socket) {
+	public MulticastServerThread(Socket socket,  ArrayList<MulticastServerThread> list) {
 		this.socket = socket;
+		this.list = list;
 	}
 
 	@Override
 	public void run() {
 		BufferedReader br = null;
-		BufferedWriter bw = null;
 		try {
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -34,12 +37,13 @@ public class UnicastServerThread implements Runnable {
 					bw.flush();
 					isStop = true;
 				} else {
-					bw.write(readLine + "\n");
-					bw.flush();
+					broadCast(readLine + "\n");
 				}
 			}
+			list.remove(this);
 		} catch (IOException e) {
 			System.out.println("비정상적으로 종료하셨습니다.");
+			list.remove(this);
 		} finally {
 			try {
 				if (bw != null) bw.close();
@@ -47,5 +51,16 @@ public class UnicastServerThread implements Runnable {
 			} catch (IOException e2) {
 			}
 		}
+	} // end run();
+	
+	private void broadCast(String msg) throws IOException {
+		for (MulticastServerThread mst : list) {
+			mst.sendMessage(msg);
+		}
+	}
+
+	private void sendMessage(String msg) throws IOException {
+		bw.write(msg);
+		bw.flush();
 	}
 }
