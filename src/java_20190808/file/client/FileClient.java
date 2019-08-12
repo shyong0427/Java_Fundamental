@@ -38,14 +38,14 @@ public class FileClient {
 			osw = new OutputStreamWriter(os);
 			bw = new BufferedWriter(osw);
 			// osw.write("Hello."); > 한줄로 아래와 같은 역할을 한다.
-			bw.write("mariadb.pdf");
+			bw.write("java-12.pdf");
 			bw.newLine();
 			bw.flush();
 
 			is = socket.getInputStream();
 			File f = new File("C:\\dev\\test\\network");
 			f.mkdirs();
-			f = new File(f, "mariadb.pdf");
+			f = new File(f, "java-12.pdf");
 			fos = new FileOutputStream(f);
 			byte[] readBytes = new byte[1024*8];
 			int readByteCount = 0;
