@@ -10,7 +10,7 @@ public class APIExamCaptchaImage {
         String clientId = "ENGh6nYoorK8lefcfutw";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "Z6JOfEQtax";//애플리케이션 클라이언트 시크릿값";
         try {
-            String key = "JGKNQEpRTepPhvZY"; // https://openapi.naver.com/v1/captcha/nkey 호출로 받은 키값
+            String key = "TQKo8DWtcYNtYuYx"; // https://openapi.naver.com/v1/captcha/nkey 호출로 받은 키값
             String apiURL = "https://openapi.naver.com/v1/captcha/ncaptcha.bin?key=" + key;
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -28,7 +28,7 @@ public class APIExamCaptchaImage {
                 String tempname = String.valueOf(new Date().getTime()); // long type -> String type 
                 String path = "C:\\dev\\test"; // 환경에 맞게 경로를 수정
 //              File f = new File("tempname + ".jpg");
-                File f = new File(path, 	tempname + ".jpg"); // 위의 코드 수정 
+                File f = new File(path, tempname + ".jpg"); // 위의 코드 수정 
                 f.createNewFile();
                 OutputStream outputStream = new FileOutputStream(f);
                 while ((read =is.read(bytes)) != -1) {

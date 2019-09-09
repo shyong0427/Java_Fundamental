@@ -9,7 +9,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class APIExamCaptchaNkeyResult {
-
     public static void main(String[] args) {
         String clientId = "ENGh6nYoorK8lefcfutw";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "Z6JOfEQtax";//애플리케이션 클라이언트 시크릿값";
