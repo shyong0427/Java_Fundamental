@@ -38,14 +38,14 @@ public class FileClient {
 			osw = new OutputStreamWriter(os);
 			bw = new BufferedWriter(osw);
 			// osw.write("Hello."); > 한줄로 아래와 같은 역할을 한다.
-			bw.write("homework_20190905.docx");
+			bw.write("Amazon.pptx");
 			bw.newLine();
 			bw.flush();
 
 			is = socket.getInputStream();
 			File f = new File("C:\\dev\\test");
 			f.mkdirs();
-			f = new File(f, "homework_20190905.docx");
+			f = new File(f, "Amazon.pptx");
 			fos = new FileOutputStream(f);
 			byte[] readBytes = new byte[1024*8];
 			int readByteCount = 0;
